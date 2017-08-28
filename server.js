@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
+
 // DATABASE CONFIGURATION
 var databaseUrl = "BOOK-LIST";
 var collections = ["books"];
@@ -30,15 +31,8 @@ db.on("error", function(error) {
 });
 
 
-
-
 // ROUTES
 // ======
-
-// // Simple index route
-// app.get("/", function(req, res) {
-//   res.send(index.html);
-// });
 
 // WHEN SUBMIT BUTTON IS PRESSED, BOOK AND AUTHOR SUBMISSION IS SAVED TO MONGO DB
 app.post("/submit", function(req, res) {
@@ -75,7 +69,6 @@ app.get("/all", function(req, res) {
         }
     });
 });
-
 
 
 // Select just one book by an id
