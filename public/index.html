@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Claim It! Book List</title>
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <style media="screen">
+    
+    body {
+      background-image: url('assets/claimitbackground.jpg');
+      background-repeat: repeat;
+    }
+
+    .jumbotron{
+      opacity: .95;
+    }
+
+    h1 {
+        font-size: 40px;
+        color: white;
+    }
+
+   .deleter {
+        margin-left: 20px;
+        color: red;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: white;
+        height: 25px;
+        display:inline-block;
+    }
+
+    .dataTitle {
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    /*.dataentry{font-size: 8px;}*/
+
+    #results {
+        width: 400px;
+        height: 200px;
+        overflow: auto;
+    }
+
+    #actionbutton {
+        display: inline-block;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        
+        <!-- JUMBOTRON -->
+        <div class="jumbotron">
+            <h1 class="text-center">Claim It! Book List</h1>
+        </div>
+
+        <!-- BOOTSTRAP SIGN-UP FORM -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary" style="opacity:.95;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add A Book</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="text">Book Name</label>
+                            <input type="text" class="form-control" id="title" placeholder="e.g. Game Of Thrones">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Author</label>
+                            <input type="text" class="form-control" id="note" placeholder="e.g. George R.R. Martin">
+                        </div>
+
+                        <!-- SUBMIT/UPDATE/DELETE BUTTONS -->
+                        <div id="buttons">
+                            <div id="actionbutton">
+                                <button class="btn btn-default" id="submit">Submit</button>
+                            </div>
+                            <button class="btn btn-default" id="clearall">Delete All Notes</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- BOOK RESULTS LIST -->
+<div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-primary" style="opacity:.95;">
+        <div class="panel-heading">
+          <h3 class="panel-title">Book List</h3>
+        </div>
+                   
+          <div class="panel-body">
+            <!-- Table -->
+            <table class="table">
+            <thead>
+                <tr>
+                <th>Book Name <i>(Click Book Title For More Information)</i> </th>
+              </tr>
+            </thead>
+            
+            <!-- RESULTS ARE PLACED HERE IN id="results" -->
+            <tbody id="results"">
+
+            </tbody>
+            
+            </table>
+          </div>    
+      </div>
+    </div>
+  </div>
+
+<!-- EMPTY DIV FOR SPACE AT BOTTOM OF SCREEN -->
+    <div style="height:300px"></div>
+    </div>
+
+<!-- LINK TO APP.JS FILE -->
+    <script src="app.js"></script>
+</body>
+
+</html>
