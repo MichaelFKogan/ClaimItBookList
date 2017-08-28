@@ -37,17 +37,17 @@ $(document).on("click", "#submit", function() {
             url: "/submit",
             data: {
                 title: $("#title").val(),
-                note: $("#note").val(),
+                author: $("#author").val(),
                 created: Date.now()
             }
         })
-        // If that API call succeeds, add the title and a delete button for the note to the page
+        // If that API call succeeds, add the title and a delete button for the author to the page
         .done(function(data) {
             // Add the title and delete button to the #results section
             $("#results").prepend("<p class='dataentry' data-id=" + data._id + "><span class='dataTitle' data-id=" +
                 data._id + ">" + data.title + "<button class=deleter>delete</button></span></p>");
-            // Clear the note and title inputs on the page
-            $("#note").val("");
+            // Clear the author and title inputs on the page
+            $("#author").val("");
             $("#title").val("");
         });
 });
@@ -58,7 +58,7 @@ $(document).on("click", "#submit", function() {
 
 // When the #clearall button is pressed
 $("#clearall").on("click", function() {
-    // Make an AJAX GET request to delete the notes from the db
+    // Make an AJAX GET request to delete the authors from the db
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -74,12 +74,12 @@ $("#clearall").on("click", function() {
 
 
 
-// When user clicks the deleter button for a note
+// When user clicks the deleter button for a author
 $(document).on("click", ".deleter", function() {
     // Save the p tag that encloses the button
     var selected = $(this).parent();
-    // Make an AJAX GET request to delete the specific note
-    // this uses the data-id of the p-tag, which is linked to the specific note
+    // Make an AJAX GET request to delete the specific author
+    // this uses the data-id of the p-tag, which is linked to the specific author
     $.ajax({
         type: "GET",
         url: "/delete/" + selected.data("id"),
@@ -88,8 +88,8 @@ $(document).on("click", ".deleter", function() {
         success: function(response) {
             // Remove the p-tag from the DOM
             selected.remove();
-            // Clear the note and title inputs
-            $("#note").val("");
+            // Clear the author and title inputs
+            $("#author").val("");
             $("#title").val("");
             // Make sure the #actionbutton is submit (in case it's update)
             $("#actionbutton").html("<button class='btn btn-default' id='submit'>Submit</button>");
@@ -100,21 +100,21 @@ $(document).on("click", ".deleter", function() {
 
 
 
-// When user click's on note title, show the note, and allow for updates
+// When user click's on BOOK title, show the BOOK, and allow for updates
 $(document).on("click", ".dataTitle", function() {
     // Grab the element
     var selected = $(this);
-    // Make an ajax call to find the note
-    // This uses the data-id of the p-tag, which is linked to the specific note
+    // Make an ajax call to find the author
+    // This uses the data-id of the p-tag, which is linked to the specific author
     $.ajax({
         type: "GET",
         url: "/find/" + selected.data("id"),
         success: function(data) {
             // Fill the inputs with the data that the ajax call collected
-            $("#note").val(data.note);
+            $("#author").val(data.author);
             $("#title").val(data.title);
             // Make the #actionbutton an update button, so user can
-            // Update the note s/he chooses
+            // Update the author s/he chooses
             $("#actionbutton").html("<button class='btn btn-default' id='updater' data-id='" + data._id + "'><b>Update</b></button>");
         }
     });
@@ -124,13 +124,13 @@ $(document).on("click", ".dataTitle", function() {
 
 
 
-// When user click's update button, update the specific note
+// When user click's update button, update the specific author
 $(document).on("click", "#updater", function() {
     // Save the selected element
     var selected = $(this);
     // Make an AJAX POST request
     // This uses the data-id of the update button,
-    // which is linked to the specific note title
+    // which is linked to the specific author title
     // that the user clicked before
     $.ajax({
         type: "POST",
@@ -138,12 +138,12 @@ $(document).on("click", "#updater", function() {
         dataType: "json",
         data: {
             title: $("#title").val(),
-            note: $("#note").val()
+            author: $("#author").val()
         },
         // On successful call
         success: function(data) {
             // Clear the inputs
-            $("#note").val("");
+            $("#author").val("");
             $("#title").val("");
             // Revert action button to submit
             $("#actionbutton").html("<button class='btn btn-default' id='submit'>Submit</button>");
